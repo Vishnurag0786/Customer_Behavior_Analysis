@@ -1,0 +1,34 @@
+import pandas as pd //import
+df = pd.read_csv(r"C:\Users\vishn\OneDrive\Documents\customer_shopping_behavior.csv")  //declare file path
+df.head() // 5 row
+df.info() //datatype, how many rows and column
+df.describe() // Summary statistics of numerical column 
+df.describe(include='all') // summary statistics of categorical column
+df.isnull().sum() //missing value
+df['Review Rating'] = df.groupby('Category')['Review Rating'].transform(lambda x: x.fillna(x.median()))
+df.isnull().sum() //missing value
+df.columns = df.columns.str.lower() // convert to lower
+df.columns = df.columns.str.replace(' ','_') // convert space to underscore
+df = df.rename(columns={'purchase_amount_(usd)':'purchase_amount'})
+df.columns
+# to create a new column as age_group
+labels = ['Youngster','Adult','Midaged','Senior']
+df['age group'] = pd.qcut(df['age'], q=4, labels = labels)
+df[['age','age group']].head()
+#create column purchase_frequency_days
+#create a dictionary called frequency mapping
+frequency_mapping = {
+'fortnightly': 14,
+'weekly':7,
+'Monthly':30,
+'Quarterly':90,
+'Bi-Weekly':14,
+'Annually': 365,
+'Every 3 Months':90
+}
+df['purchase_frequency_days'] = df['frequency_of_purchases'].map(frequency_mapping)
+df[['purchase_frequency_days','frequency_of_purchases']].head(10)
+df[['discount_applied','promo_code_used']].head(10)
+(df['discount_applied'] == df['promo_code_used']).all()
+df = df.drop('promo_code_used', axix=1)
+df.columns

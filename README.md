@@ -9,11 +9,7 @@ It highlights skills in data cleaning, SQL querying, data visualization, storyte
 
 📂 Dataset
 
-Source: (Add your dataset source here – e.g., Kaggle, internal, public API)
-
 Description: Briefly describe what the dataset contains (e.g., sales data, customer demographics, transactions, time-series, etc.)
-
-Size: Number of rows, columns (optional)
 
 🛠 Tools & Technologies
 
